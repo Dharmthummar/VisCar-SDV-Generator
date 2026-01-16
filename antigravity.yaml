@@ -1,0 +1,86 @@
+# Antigravity Configuration for VisCar SDV GenAI Generator
+
+project:
+  name: viscar-sdv-generator
+  version: 1.0.0
+  description: Production-grade GenAI framework for SDV application generation
+
+framework:
+  type: sdv-genai
+  languages:
+    - cpp
+    - rust
+    - java
+    - python
+  
+  llm:
+    gemini:
+      model: gemini-2.0-flash-exp
+      tasks:
+        - requirements_generation
+        - design_generation
+        - code_generation
+    
+    jules:
+      model: code-bison
+      tasks:
+        - misra_enforcement
+        - test_generation
+        - code_refactoring
+
+compliance:
+  standards:
+    - MISRA-C++:2023
+    - ASPICE-Level-2
+    - ISO-26262-ASIL-B
+  
+  enforcement:
+    misra:
+      enabled: true
+      auto_fix: true
+    
+    aspice:
+      enabled: true
+      traceability: full
+    
+    iso26262:
+      enabled: true
+      asil_level: B
+
+generation:
+  output_directory: applications
+  
+  templates:
+    cpp:
+      standard: c++17
+      compiler: gcc
+      flags: ["-Wall", "-Wextra", "-Werror"]
+    
+    rust:
+      edition: "2021"
+      features: ["automotive", "safety"]
+    
+    java:
+      version: 17
+      framework: spring-boot
+
+ota:
+  enabled: true
+  service_injection: true
+  registry_management: true
+  rollback_support: true
+
+testing:
+  unit_tests: true
+  integration_tests: true
+  coverage_threshold: 85
+  
+  frameworks:
+    cpp: googletest
+    rust: cargo-test
+    java: junit5
+
+deployment:
+  containerization: docker
+  orchestration: kubernetes
+  ci_cd: github-actions
