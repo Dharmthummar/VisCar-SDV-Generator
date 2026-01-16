@@ -1,0 +1,19 @@
+[package]
+name = "prediction_service"
+version = "1.0.0"
+edition = "2021"
+authors = ["VisCar SDV Generator"]
+
+[dependencies]
+
+[lib]
+name = "prediction_service"
+path = "prediction_service.rs"
+
+[[bin]]
+name = "prediction_demo"
+path = "prediction_service.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
